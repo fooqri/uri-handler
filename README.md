@@ -12,6 +12,8 @@ Download, unzip, and run setup
 
 This will create a *~/.uri_handlers* directory with a sample handler called _edit_. It also copies the macOS router app to the _/Applications_ directory. Finally it creates a *.bash_profile* file in the *~/.uri_handlers* directory that is used by the macOS app to establish the environment used when running handlers. Initially the *.bash_profile* include your sessions path information. 
 
+All handlers must reside in the *~/.uri_handlers* directory, and scripts are provided to add and remove handlers inside this directory (see below).
+
 ## Usage
 
 ### Test this install
