@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+import sys
+import subprocess
+
+if __name__ == "__main__":
+    if len(sys.argv) == 2:
+        protocol = sys.argv[1]
+        f = open("/Applications/uri-handler.app/Contents/Info.plist", "r")
+        contents = f.readlines()
+        f.close()
+        contents.insert(23, "              <string>" + protocol + "</string>\n")
+        f = open("/Applications/uri-handler.app/Contents/Info.plist", "w")
+        contents = "".join(contents)
+        f.write(contents)
+        f.close()
+        subprocess.run("touch /Applications/uri-handler.app; cp handler_template " + protocol + ";", shell=True)
+        print("created new handler: (" + protocol + "), and added " + protocol + " to Info.plist file.")
+    else:
+        print("please provide a handler protocol name")

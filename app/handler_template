@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+import sys
+import subprocess
+from urllib.parse import urlparse, parse_qs
+
+if __name__ == "__main__":
+    if len(sys.argv) == 2:
+        uri = sys.argv[1]
+        result = urlparse(uri)
+        query = parse_qs(result.query, keep_blank_values=True)
+        filename = query["file"][0]
+        subprocess.run("open -a TextEdit " + filename, shell=True)
+    else:
+        print("Error: no url provided")

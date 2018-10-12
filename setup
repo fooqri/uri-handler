@@ -1,0 +1,8 @@
+#!/usr/bin/env python
+import os
+import subprocess
+
+if __name__ == "__main__":
+    path = os.environ['PATH']
+
+    subprocess.run("cp -rf app/. ~/.uri_handlers; cd ~/.uri_handlers; echo 'export PATH=\"" + path + "\"' > .bash_profile; mv uri-handler.app /Applications/ ", shell=True)
