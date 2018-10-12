@@ -34,7 +34,7 @@ cd ~/.uri_handlers
 ./add_handler emacs
 ```
 
-Edit your new handler to do what you want with the url information
+Edit your new handler to do what you want with the url information. For example the generated *~/.uri_handlers/emacs* script will initially be a basic template.
 
 ```python
 #!/usr/bin/env python
@@ -53,7 +53,7 @@ if __name__ == "__main__":
         print("Error: no url provided")
 ```
 
-For Emacs I changed it to look like this
+I modified it to look like this.
 
 ```
 #!/usr/bin/env python
@@ -103,6 +103,23 @@ cd ~/.uri_handlers
 
 ## Potential Issues
 The biggest issue is that the *uri_handler* app relies on *~/uri_handlers/.bash_profile* to setup the environment for the spawned process, so if you are using Python, Ruby, etc or spawning apps like emacsclient then make sure to add everything you need specified in the environment into *~/uri_handlers/.bash_profile*.
+
+Script can always be run from the command line, just pass in a uri string. So it makes them easy to test. In most cases if it doesn't work it is a script issue, so test your scripts in the terminal to see any errors.
+
+```
+./edit "edit://open/?file=~/.uri_handlers/.bash_profile"
+```
+
+If it works in the terminal but not using the browser address bar is likely an issue with the *~/uri_handlers/.bash_profile* missing some needed environment information. To test this case try this (this example assumes ~/.bash_profile is your startup profile, adjust accordingly)
+
+```
+cd ~/.uri_handlers/
+mv .bash_profile .bash_profile_bk
+ln -s ~/.bash_profile .bash_profile
+```
+
+If it works now then either keep the symlink, or work on fixing *~/.uri_handlers/.bash_profile* 
+
 
 You can install [RCDefaultApp](http://www.rubicode.com/Software/RCDefaultApp/) to see if macOS is actually using the *uri-handler* app as the protocol default, and make changes if not. 
 
