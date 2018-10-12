@@ -86,6 +86,11 @@ if __name__ == "__main__":
         print("Error: no url provided")
 ```
 
+I have a modified logger that adds file location links to debug messages in this format so I can easily open Emacs from debug messages in the terminal. Example
+```
+emacs://open/?file=~/.bash_profile&line=25&column=0
+```
+
 That is it, whenever you modify the handler script the changes are immediate. 
 
 ## Removing A Handler
