@@ -62,11 +62,8 @@ import subprocess
 from urllib.parse import urlparse, parse_qs
 
 if __name__ == "__main__":
-    sys.stdout = open('emacs-log', 'w')
-    print ("Edit Started...")
     if len(sys.argv) == 2:
         uri = sys.argv[1]
-        print (uri)
         result = urlparse(uri)
         query = parse_qs(result.query, keep_blank_values=True)
         if "line" in query:
@@ -84,9 +81,6 @@ if __name__ == "__main__":
             line = "0"
             column = "0"
 
-        print(filename)
-        print(line)
-        print(column)
         subprocess.Popen(["/usr/local/Cellar/emacs/26.1_1/bin/emacsclient", "+" + line + ":" + column, filename])
     else:
         print("Error: no url provided")
