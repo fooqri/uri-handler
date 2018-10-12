@@ -28,7 +28,7 @@ If everything is working you should see the custom *.bash_profile* file. You may
 Handlers are simple shell scripts written in whatever language you want. The easiest way to add a handler is with the *add_handler* command. Simply provide the name of the protocol you wish to add, and the script will add a handler file, and also update the uri-handler app to register this new protocol with macOS. The default handler will simply open the TextEdit app, so you will want to customize the handler script. See the example below.
 
 ```
-cd ~/.add_handlers
+cd ~/.uri_handlers
 ./add_handler emacs
 ```
 
@@ -61,9 +61,7 @@ from urllib.parse import urlparse, parse_qs
 
 if __name__ == "__main__":
     if len(sys.argv) == 2:
-        sys.stdout = open('emacs-log', 'w')
         uri = sys.argv[1]
-        print(uri)
         result = urlparse(uri)
         query = parse_qs(result.query, keep_blank_values=True)
         if "line" in query:
@@ -92,7 +90,7 @@ That is it, whenever you modify the handler script the changes are immediate.
 To remove a handler call *remove_handler* with the name of the handler you want removed. The *remove_handler* script will delete the handler file and remove the entry from the *uri_handler* applications list of protocols it accepts.
 
 ```
-cd ~/.add_handlers
+cd ~/.uri_handlers
 ./remove_handler emacs
 ```
 
