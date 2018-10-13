@@ -55,7 +55,7 @@ if __name__ == "__main__":
 
 I modified it to look like this.
 
-```
+```python
 #!/usr/bin/env python
 import sys
 import subprocess
